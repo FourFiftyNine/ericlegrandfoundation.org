@@ -24,6 +24,12 @@ body {
 .wrap {
 	max-width: 1015px;
 }
+::-webkit-input-placeholder {
+    color: $off-black;
+}
+:-moz-placeholder {
+    color: $off-black;
+}
 /********************
 WORDPRESS BODY CLASSES
 style a page via class
@@ -97,7 +103,8 @@ a, a:visited {
 
 	/* on click */
 	&:active {
-
+		position: relative;
+		top: 1px;
 	}
 
 	/* mobile tap color */
@@ -116,11 +123,10 @@ H1, H2, H3, H4, H5 STYLES
 ******************************************************************/
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
-	font-family: league-gothic, sans-serif;
-	letter-spacing: 1px;
+	@include league-gothic;
 	text-transform: uppercase;
 	text-rendering: optimizelegibility;
-	font-weight: 500;
+	font-weight: 300;
 	/*
 	if you're going to use webfonts, be sure to check your weights
 	http://css-tricks.com/watch-your-font-weight/
@@ -190,11 +196,26 @@ HEADER SYTLES
 .header { background: url(../images/bg-header.png) repeat-x; height: 126px;}
 #logo {float: left;}
 #top-header {
-	height: 47px;
-	#searchform { float: right; position: relative; top: 13px; margin-right: 20px}
+	height: 45px;
+	#searchform { 
+		float: right; 
+		position: relative; 
+		top: 11px; 
+		margin-right: 20px;
+		input[type=text] {
+			@include league-gothic;
+			height: 27px;
+			font-size: 17px;
+			color: $off-black;
+			border: 0;
+			width: 195px;
+			margin-right: 5px;
+			padding: 0 5px 0 10px;
+		}
+
+	}
 	.social-icons { float: right; position: relative; top: 11px; margin-right: 20px}
 }
-
 
 /*********************
 NAVIGATION STYLES
@@ -211,19 +232,23 @@ and moe scalable.
 .nav {
 	border-bottom: 0;
 	margin-bottom: 0;
-	li {
+	> li {
 		float: left;
 		position: relative;
-		a {
+		// ALL Menu items
+		> a {
 			background-color: none;
-			border-bottom: 1px solid #ccc;
+			border-right: 1px solid #a6181f;
+			border-left: 1px solid #d03c44;
+			// background: url(../images/navigation-separator.png) repeat-y;
 			color: $white;
 			display: block;
-			font-family: league-gothic, sans-serif;
+			@include league-gothic;
 			font-size: 22px;
 			font-style: normal;
-			letter-spacing: 1px;
-			padding: 10px 10px;
+			height: 79px;
+			line-height: 80px;
+			padding: 0 30px;
 			text-decoration: none;
 			text-transform: uppercase;
 
@@ -234,13 +259,29 @@ and moe scalable.
 			keep this file as small as possible!
 			*/
 			&:hover, &:focus {
-
+				background-color: rgba($white, .1) !important;
+			}
+			&:active, .active {
+				background-color: rgba($black, .1) !important;
+				top: 0;
+				border: none;
+				padding: 0 31px;
+				@include box-shadow(0 0 10px #000000 inset);
 			}
 		}
 
-		&:first-child {}
+		// Use BG image for separator since we cant have a double border
+		&:first-child > a {
+			border-left:0;
+			background: url(../images/navigation-separator.png) repeat-y;
+			background-position: left;
+		}
 
-		&:last-child {}
+		&:last-child > a {
+			background: url(../images/navigation-separator.png) repeat-y;
+			background-position: right;
+			border-right: 0;
+		}
 
 		/*
 		so you really have to rethink your dropdowns for mobile.

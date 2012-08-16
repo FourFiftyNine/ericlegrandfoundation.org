@@ -41,7 +41,7 @@
 			
 				<div id="inner-header" class="wrap clearfix">
 					
-					<div id="logo" class="h1"><img src="<?php echo get_stylesheet_directory_uri(); ?>/library/images/logo.png"/><a href="<?php echo home_url(); ?>" rel="nofollow"></a></div>
+					<div id="logo" class="h1"><a href="<?php echo home_url(); ?>" rel="nofollow"><img src="<?php echo get_stylesheet_directory_uri(); ?>/library/images/logo.png"/></a></div>
 					<div id="top-header" class="clearfix">
 						<?php get_template_part('social-icons', $name = null) ?>
 						<?php get_search_form(true); ?>

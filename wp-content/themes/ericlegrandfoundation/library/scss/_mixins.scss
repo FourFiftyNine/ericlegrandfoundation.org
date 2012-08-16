@@ -60,6 +60,8 @@ $alert-blue:        #d5edf8;
 $black:             #000;
 $white:             #fff;
 $red:								#d7343d;
+$off-black: 				#363636;
+// TODO REMOVE
 $bones-pink:        #f01d4f;
 $bones-blue:        #1990db;
 
@@ -75,6 +77,11 @@ TYPOGRAPHY
 $sans-serif:        "Helvetica Neue", Helvetica, Arial, sans-serif; 
 $serif:             "Georgia", Cambria, Times New Roman, Times, serif; 
 
+@mixin league-gothic {
+	font-family: league-gothic, sans-serif;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
 
 /* 	To embed your own fonts, use this syntax
 	and place your fonts inside the 
@@ -138,110 +145,6 @@ span.amp {
 	background: $alert-green; 
 } 
 
-/*********************
-BORDER RADIUS
-*********************/
-
-/* 
-NOTE: For older browser support (and some mobile), 
-don't use the shorthand to define *different* corners. 
-
-USAGE: @include rounded(4px); 
-
-*/
-/* @mixin rounded($radius: 4px) {
-	-webkit-border-radius: $radius;
-	-moz-border-radius:    $radius;
-	border-radius:         $radius;
-} */
-
-/* 
-Instead of having a seperate mixin for the different
-borders, we're using the mixin from 320 & Up to make
-things easier to use.
-
-USAGE: @include border-radius(4px,4px,0,0);
-
-*/
-/* @mixin border-radius($topright: 0, $bottomright: 0, $bottomleft: 0, $topleft: 0) {
-	-webkit-border-top-right-radius:    $topright;
-	-webkit-border-bottom-right-radius: $bottomright;
-	-webkit-border-bottom-left-radius:  $bottomleft;
-	-webkit-border-top-left-radius:     $topleft;
-	-moz-border-radius-topright:        $topright;
-	-moz-border-radius-bottomright:     $bottomright;
-	-moz-border-radius-bottomleft:      $bottomleft;
-	-moz-border-radius-topleft:         $topleft;
-	border-top-right-radius:            $topright;
-	border-bottom-right-radius:         $bottomright;
-	border-bottom-left-radius:          $bottomleft;
-	border-top-left-radius:             $topleft;
-	-webkit-background-clip:            padding-box;
-	-moz-background-clip:               padding;
-	background-clip:                    padding-box; 
-} */
-
-
-/*********************
-TRANISTION
-*********************/
-
-/* @include transition(all,2s,ease-out); */
-/* @mixin css-transition($what: all, $time: 0.2s, $how: ease-in-out) {
-	-webkit-transition: $what $time $how;
-	-moz-transition:    $what $time $how;
-	-ms-transition:     $what $time $how;
-	-o-transition:      $what $time $how;
-	transition:         $what $time $how;
-} */
-
-/*********************
-BOX SHADOWS
-*********************/
-
-/* @include box-shadow(5px, 5px, 10px, #000); */
-/* @mixin box-shadow($shadow-1,
-  $shadow-2: false, $shadow-3: false,
-  $shadow-4: false, $shadow-5: false,
-  $shadow-6: false, $shadow-7: false,
-  $shadow-8: false, $shadow-9: false) {
-  $full: compact($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9);
-
-  -webkit-box-shadow: $full;
-     -moz-box-shadow: $full;
-          box-shadow: $full;
-} */
-
-/*********************
-CSS3 GRADIENTS
-Be careful with these since they can 
-really slow down your CSS. Don't overdue it.
-*********************/
-
-/* @include css-gradient(#dfdfdf,#f8f8f8); */
-/* @mixin css-gradient($from: #dfdfdf, $to: #f8f8f8) {
-	background-color: $to;
-	background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
-	background-image: -webkit-linear-gradient(top, $from, $to);
-	background-image: -moz-linear-gradient(top, $from, $to);
-	background-image: -o-linear-gradient(top, $from, $to);
-	background-image: linear-gradient(to bottom, $from, $to);
-} */
-
-/*********************
-BOX SIZING
-*********************/
-
-/* @include box-sizing(border-box); */
-/* NOTE: value of "padding-box" is only supported in Gecko. So 
-probably best not to use it. I mean, were you going to anyway? */
-// @mixin box-sizing($type: border-box) {
-// 	-webkit-box-sizing: $type;
-// 	-moz-box-sizing:    $type;
-// 	-ms-box-sizing:     $type;
-// 	box-sizing:         $type;
-// }
-
  
 /*********************
 BUTTONS
@@ -262,17 +165,21 @@ BUTTONS
 		line-height: 30px;
 		letter-spacing: 1px;
 		&:hover, &:focus {
-
-		}
-		&:active {
-			// @include css-gradient(darken($bones-pink, 5%), $bones-pink);
+			@include background-image(linear-gradient(#c03139, darken(#db4a52, 10%)));
 		}
 	}
 	&.small {
-		height: 25px;
-		line-height: 25px;
+		height: 28px;
+		line-height: 28px;
 		padding: 0 9px;
 		font-size: 17px;
+	}
+	&:hover, &:focus {
+		@include box-shadow(none);
+	}
+	&:active {
+		// @include css-gradient(darken($bones-pink, 5%), $bones-pink);
+		@include box-shadow(0 0 5px rgba(#000000, .5) inset);
 	}
 
 }
