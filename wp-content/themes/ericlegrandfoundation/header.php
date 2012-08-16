@@ -22,7 +22,8 @@
 		<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico">
 				
   		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-		
+		<script type="text/javascript" src="//use.typekit.net/deo8hwd.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 		<!-- wordpress head functions -->
 		<?php wp_head(); ?>
 		<!-- end of wordpress head -->
@@ -40,9 +41,11 @@
 			
 				<div id="inner-header" class="wrap clearfix">
 					
-					<!-- to use a image just replace the bloginfo('name') with your img src and remove the surrounding <p> -->
-					<p id="logo" class="h1"><a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?></a></p>
-					
+					<div id="logo" class="h1"><img src="<?php echo get_stylesheet_directory_uri(); ?>/library/images/logo.png"/><a href="<?php echo home_url(); ?>" rel="nofollow"></a></div>
+					<div id="top-header" class="clearfix">
+						<?php get_template_part('social-icons', $name = null) ?>
+						<?php get_search_form(true); ?>
+					</div>
 					<!-- if you'd like to use the site description you can un-comment it below -->
 					<?php // bloginfo('description'); ?>
 					

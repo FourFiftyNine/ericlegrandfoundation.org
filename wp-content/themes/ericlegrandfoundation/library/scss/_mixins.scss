@@ -16,6 +16,8 @@ remember less is more.
 
 ******************************************************************/
 
+@import "compass";
+
 /*********************
 CLEARFIXIN'
 *********************/
@@ -57,10 +59,15 @@ $alert-blue:        #d5edf8;
 
 $black:             #000;
 $white:             #fff;
-
+$red:								#d7343d;
 $bones-pink:        #f01d4f;
 $bones-blue:        #1990db;
-	
+
+/*********************
+GRADIENTS
+*********************/
+
+@mixin red-gradient { @include background-image(linear-gradient(#e1373f, #cf323a)); }
 /*********************
 TYPOGRAPHY
 *********************/
@@ -142,11 +149,11 @@ don't use the shorthand to define *different* corners.
 USAGE: @include rounded(4px); 
 
 */
-@mixin rounded($radius: 4px) {
+/* @mixin rounded($radius: 4px) {
 	-webkit-border-radius: $radius;
 	-moz-border-radius:    $radius;
 	border-radius:         $radius;
-}
+} */
 
 /* 
 Instead of having a seperate mixin for the different
@@ -156,7 +163,7 @@ things easier to use.
 USAGE: @include border-radius(4px,4px,0,0);
 
 */
-@mixin border-radius($topright: 0, $bottomright: 0, $bottomleft: 0, $topleft: 0) {
+/* @mixin border-radius($topright: 0, $bottomright: 0, $bottomleft: 0, $topleft: 0) {
 	-webkit-border-top-right-radius:    $topright;
 	-webkit-border-bottom-right-radius: $bottomright;
 	-webkit-border-bottom-left-radius:  $bottomleft;
@@ -172,7 +179,7 @@ USAGE: @include border-radius(4px,4px,0,0);
 	-webkit-background-clip:            padding-box;
 	-moz-background-clip:               padding;
 	background-clip:                    padding-box; 
-}
+} */
 
 
 /*********************
@@ -180,20 +187,20 @@ TRANISTION
 *********************/
 
 /* @include transition(all,2s,ease-out); */
-@mixin css-transition($what: all, $time: 0.2s, $how: ease-in-out) {
+/* @mixin css-transition($what: all, $time: 0.2s, $how: ease-in-out) {
 	-webkit-transition: $what $time $how;
 	-moz-transition:    $what $time $how;
 	-ms-transition:     $what $time $how;
 	-o-transition:      $what $time $how;
 	transition:         $what $time $how;
-}
+} */
 
 /*********************
 BOX SHADOWS
 *********************/
 
 /* @include box-shadow(5px, 5px, 10px, #000); */
-@mixin box-shadow($shadow-1,
+/* @mixin box-shadow($shadow-1,
   $shadow-2: false, $shadow-3: false,
   $shadow-4: false, $shadow-5: false,
   $shadow-6: false, $shadow-7: false,
@@ -203,7 +210,7 @@ BOX SHADOWS
   -webkit-box-shadow: $full;
      -moz-box-shadow: $full;
           box-shadow: $full;
-}
+} */
 
 /*********************
 CSS3 GRADIENTS
@@ -212,14 +219,14 @@ really slow down your CSS. Don't overdue it.
 *********************/
 
 /* @include css-gradient(#dfdfdf,#f8f8f8); */
-@mixin css-gradient($from: #dfdfdf, $to: #f8f8f8) {
+/* @mixin css-gradient($from: #dfdfdf, $to: #f8f8f8) {
 	background-color: $to;
 	background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
 	background-image: -webkit-linear-gradient(top, $from, $to);
 	background-image: -moz-linear-gradient(top, $from, $to);
 	background-image: -o-linear-gradient(top, $from, $to);
 	background-image: linear-gradient(to bottom, $from, $to);
-}
+} */
 
 /*********************
 BOX SIZING
@@ -228,12 +235,12 @@ BOX SIZING
 /* @include box-sizing(border-box); */
 /* NOTE: value of "padding-box" is only supported in Gecko. So 
 probably best not to use it. I mean, were you going to anyway? */
-@mixin box-sizing($type: border-box) {
-	-webkit-box-sizing: $type;
-	-moz-box-sizing:    $type;
-	-ms-box-sizing:     $type;
-	box-sizing:         $type;
-}
+// @mixin box-sizing($type: border-box) {
+// 	-webkit-box-sizing: $type;
+// 	-moz-box-sizing:    $type;
+// 	-ms-box-sizing:     $type;
+// 	box-sizing:         $type;
+// }
 
  
 /*********************
@@ -241,49 +248,47 @@ BUTTONS
 *********************/
 
 .button, .button:visited {
-	font-family: $sans-serif;
-	border: 1px solid darken($bones-pink, 13%);
-	border-top-color: darken($bones-pink, 7%);
-	border-left-color: darken($bones-pink, 7%);
-	padding: 4px 12px;
-	color: $white;
-	display: inline-block;
-	font-size: 11px;
-	font-weight: bold;
-	text-decoration: none;
-	text-shadow: 0 1px rgba(0,0,0, .75);
-	cursor: pointer;
-	margin-bottom: 20px;
-	line-height: 21px;
-	@include rounded(4px);
-	@include css-gradient($bones-pink, darken($bones-pink, 5%));
-
-
-	&:hover, &:focus {
+	&.red {
+		@include background-image(linear-gradient(#db4a52, #c03139));
+		@include border-radius(5px);
+		@include box-shadow(0 2px 2px rgba(#000000, .2));
+		font-family: league-gothic, sans-serif;
+		font-size: 21px;
+		text-transform: uppercase;
 		color: $white;
-	  	border: 1px solid darken($bones-pink, 13%);
-	  	border-top-color: darken($bones-pink, 20%);
-	 	border-left-color: darken($bones-pink, 20%);
-		@include css-gradient(darken($bones-pink, 5%), darken($bones-pink, 10%));
+		border: 1px solid #a91e24;
+		padding: 0 25px;
+		height: 30px;
+		line-height: 30px;
+		letter-spacing: 1px;
+		&:hover, &:focus {
+
+		}
+		&:active {
+			// @include css-gradient(darken($bones-pink, 5%), $bones-pink);
+		}
 	}
-	
-	&:active {
-		@include css-gradient(darken($bones-pink, 5%), $bones-pink);
-	}	
+	&.small {
+		height: 25px;
+		line-height: 25px;
+		padding: 0 9px;
+		font-size: 17px;
+	}
+
 }
 
 .blue-button, .blue-button:visited {
 	border-color: darken($bones-blue, 10%);
 	text-shadow: 0 1px 1px darken($bones-blue, 10%);
-	@include css-gradient( $bones-blue, darken($bones-blue, 5%) );
-	-webkit-box-shadow: inset 0 0 3px lighten($bones-blue, 16%);
-       -moz-box-shadow: inset 0 0 3px lighten($bones-blue, 16%);
-   	        box-shadow: inset 0 0 3px lighten($bones-blue, 16%);
+	// @include css-gradient( $bones-blue, darken($bones-blue, 5%) );
+	// -webkit-box-shadow: inset 0 0 3px lighten($bones-blue, 16%);
+ //       -moz-box-shadow: inset 0 0 3px lighten($bones-blue, 16%);
+ //   	        box-shadow: inset 0 0 3px lighten($bones-blue, 16%);
 	&:hover, &:focus {
 		border-color: darken($bones-blue, 15%);
-		@include css-gradient( darken($bones-blue, 4%), darken($bones-blue, 10%) );
+		// @include css-gradient( darken($bones-blue, 4%), darken($bones-blue, 10%) );
 	}
 	&:active {
-		@include css-gradient( darken($bones-blue, 5%), $bones-blue );
+		// @include css-gradient( darken($bones-blue, 5%), $bones-blue );
 	}
 }
