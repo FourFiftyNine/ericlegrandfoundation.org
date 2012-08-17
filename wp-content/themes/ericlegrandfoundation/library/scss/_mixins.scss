@@ -46,6 +46,15 @@ TOOLS
 	overflow: hidden;
 }
 
+@mixin bgi($path) {
+	background-image: url('../images/' + $path);
+}
+.fleft {
+	float: left;
+}
+.fright {
+	float: right;
+}
 /*********************
 COLORS
 Need help w/ choosing your colors? Try this site out:
