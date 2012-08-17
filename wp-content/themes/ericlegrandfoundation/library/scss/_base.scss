@@ -447,12 +447,12 @@ HOMEPAGE home.php
 		&.donate:visited {
 			color: $off-black;
 			text-align: center;
-			padding-top: 40px;
-			height: 90px;
+			padding-top: 15px;
+			height: 115px;
 			width: 250px;
 			@include league-gothic;
 			font-size: 51px;
-			line-height: 25px;
+
 			.arrow-red {
 				@include bgi('arrow-red.png');
 				width: 7px;
@@ -463,8 +463,8 @@ HOMEPAGE home.php
 				left: 5px;
 			}
 			img {
-				// position: relative;
-				// top: -48px;
+				position: relative;
+				top: -48px;
 			}
 		}
 

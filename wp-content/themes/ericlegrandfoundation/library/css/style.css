@@ -1297,14 +1297,13 @@ HOMEPAGE home.php
 #callouts .callout.donate, #callouts .callout.donate:visited {
   color: #363636;
   text-align: center;
-  padding-top: 40px;
-  height: 90px;
+  padding-top: 15px;
+  height: 115px;
   width: 250px;
   font-family: league-gothic, sans-serif;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 51px;
-  line-height: 25px;
 }
 /* line 456, ../scss/_base.scss */
 #callouts .callout.donate .arrow-red, #callouts .callout.donate:visited .arrow-red {
@@ -1315,6 +1314,11 @@ HOMEPAGE home.php
   position: relative;
   top: -10px;
   left: 5px;
+}
+/* line 465, ../scss/_base.scss */
+#callouts .callout.donate img, #callouts .callout.donate:visited img {
+  position: relative;
+  top: -48px;
 }
 /* line 471, ../scss/_base.scss */
 #callouts .callout.donate:hover {
