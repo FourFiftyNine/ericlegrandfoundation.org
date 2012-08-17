@@ -194,7 +194,12 @@ HEADER SYTLES
 *********************/
 
 .header { background: url(../images/bg-header.png) repeat-x; height: 126px;}
-#logo {float: left;}
+#logo {
+	float: left;
+	a:active {
+		top: 0;
+	}
+}
 #top-header {
 	height: 45px;
 	#searchform { 
@@ -228,59 +233,89 @@ easily just write on group of styles for
 the navs on the site and our css is cleaner
 and moe scalable.
 */
-
+$link-padding: 52px;
+@mixin default-nav-link {
+	color: $white;
+	border-right: 1px solid #a6181f;
+	border-left: 1px solid #d03c44;
+	padding: 0 $link-padding;
+}
 .nav {
 	border-bottom: 0;
 	margin-bottom: 0;
+	margin: 0;
+	width: 830px;
+	float: right;
 	> li {
 		float: left;
 		position: relative;
 		// ALL Menu items
 		> a {
+			@include default-nav-link;
 			background-color: none;
-			border-right: 1px solid #a6181f;
-			border-left: 1px solid #d03c44;
 			// background: url(../images/navigation-separator.png) repeat-y;
-			color: $white;
 			display: block;
 			@include league-gothic;
 			font-size: 22px;
 			font-style: normal;
 			height: 79px;
 			line-height: 80px;
-			padding: 0 30px;
 			text-decoration: none;
 			text-transform: uppercase;
-
+	}
+	&:hover > a,
+	&.current-menu-item:hover > a {
+		background-color: #d34956;
+		background-color: rgba($white, .1);
+		@include box-shadow(none);
+		@include default-nav-link;
+	}
+	&:active > a,
+	&.current-menu-item > a {
+		background-color: #c4303f;
+		background-color: rgba($black, .1);
+		top: 0;
+		border: none;
+		padding: 0 $link-padding + 1;
+		@include box-shadow(0 0 10px #000000 inset);
+	}
 			/*
 			remember this is for mobile ONLY, so there's no need
 			to even declare hover styles here, you can do it in
 			the style.scss file where it's relevant. We want to
 			keep this file as small as possible!
 			*/
-			&:hover, &:focus {
-				background-color: rgba($white, .1) !important;
-			}
-			&:active, .active {
-				background-color: rgba($black, .1) !important;
-				top: 0;
-				border: none;
-				padding: 0 31px;
-				@include box-shadow(0 0 10px #000000 inset);
-			}
-		}
+		// 	&:hover, &:focus {
+
+		// 	}
+		// 	&:active, &.active {
+		// 		background-color: #c4303f;
+		// 		background-color: rgba($black, .1);
+		// 		top: 0;
+		// 		border: none;
+		// 		padding: 0 $link-padding + 1;
+		// 		@include box-shadow(0 0 10px #000000 inset);
+		// 	}
+		// }
 
 		// Use BG image for separator since we cant have a double border
+		&:first-child,
+		&:last-child {
+			> a {
+				background-image: url(../images/navigation-separator.png);
+				background-repeat: repeat-y;
+			}
+		}
 		&:first-child > a {
 			border-left:0;
-			background: url(../images/navigation-separator.png) repeat-y;
+			padding-left: $link-padding + 1;
 			background-position: left;
 		}
 
 		&:last-child > a {
-			background: url(../images/navigation-separator.png) repeat-y;
 			background-position: right;
 			border-right: 0;
+			padding-right: $link-padding + 1;
 		}
 
 		/*
@@ -292,24 +327,34 @@ and moe scalable.
 		*/
 		ul.sub-menu,
 		ul.children {
-			width: 200px;
+			min-width: 200px;
 			border: 1px solid #ccc;
+			background-color: #d2454d;
 			border-top: 0;
 			position: absolute;
 			display: none;
 			z-index: 8999;
 			margin: 0;
 			li {
-
+				padding-left: 10px;
+				padding-right: 10px;
 				a {
-					padding-left: 10px;
+					@include league-gothic;
+					font-size: 17px;
+					color: $white;
+					height: 35px;
+					line-height: 35px;
+					padding-left: 0;
+					margin: 0;
 					border-right: 0;
 					display: block;
-					width: 180px;
-					border-bottom: 1px solid #ccc;
-
+					width: 100%;
+					// border-bottom: 1px solid #ccc;
+					text-decoration: none;
 					&:hover,
-					&:focus {}
+					&:focus {
+						color: $black;
+					}
 
 					&:link {}
 
