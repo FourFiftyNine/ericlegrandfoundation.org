@@ -7,7 +7,7 @@ sass_dir = "library/scss"
 images_dir = "library/images"
 javascripts_dir = "library/js"
 
-output_style = :nested
+output_style = :expanded
 environment = :development
 
 # To enable relative paths to assets via compass helper functions. Uncomment:
